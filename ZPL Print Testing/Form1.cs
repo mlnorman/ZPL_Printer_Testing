@@ -187,7 +187,52 @@ namespace ZPL_Print_Testing
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cboPrintDensity.SelectedItem = "8dpmm";
+            // load default from appsettings if they are set
+            var settings = Program.AppConfig;
+
+            txtIp.Text = settings.IpAddress;
+            txtPort.Text = settings.Port.ToString();
+
+            //add each format,  look for a default label format, if it exist, set it and set values
+            foreach (var format in settings.LabelFormats)
+            {
+                cboSavedFormats.Items.Add(format.Name);
+
+                if (format.IsDefault)
+                {
+                    cboSavedFormats.SelectedItem = format.Name;
+                    txtHeight.Text = format.Height.ToString();
+                    txtWidth.Text = format.Width.ToString();
+                    cboPrintDensity.SelectedItem = format.PrintDensity;
+                }
+            }
+
+            chkSaveLabels.Checked = settings.SaveLabels;
+            txtPath.Text = settings.SaveLabelPath;
+
+            // otherwise, leave it all blank
+
+            //cboPrintDensity.SelectedItem = "8dpmm";
+        }
+
+        private void cboSavedFormats_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var settings = Program.AppConfig;
+
+            if (cboSavedFormats.SelectedItem != null)
+            {
+                // try and find item, then update fields if it exists
+                foreach (var format in settings.LabelFormats)
+                {
+                    if (format.Name.Equals(cboSavedFormats.SelectedItem.ToString()))
+                    {
+                        cboSavedFormats.SelectedItem = format.Name;
+                        txtHeight.Text = format.Height.ToString();
+                        txtWidth.Text = format.Width.ToString();
+                        cboPrintDensity.SelectedItem = format.PrintDensity;
+                    }
+                }
+            }
         }
     }
 }

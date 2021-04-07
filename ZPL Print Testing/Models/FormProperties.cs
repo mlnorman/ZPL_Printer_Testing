@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZPL_Print_Testing.Models
 {
-    public class AppProperties
+    public class FormProperties
     {
         public String IpAddress { get; set; }
 
@@ -22,7 +22,7 @@ namespace ZPL_Print_Testing.Models
 
         public string LabelPath { get; set; }
 
-        public AppProperties()
+        public FormProperties()
         {
         }
     }

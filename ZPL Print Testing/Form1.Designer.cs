@@ -40,6 +40,8 @@ namespace ZPL_Print_Testing
             this.txtIp = new System.Windows.Forms.TextBox();
             this.imgLabel = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cboSavedFormats = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtWidth = new System.Windows.Forms.MaskedTextBox();
             this.txtHeight = new System.Windows.Forms.MaskedTextBox();
             this.cboPrintDensity = new System.Windows.Forms.ComboBox();
@@ -151,6 +153,8 @@ namespace ZPL_Print_Testing
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cboSavedFormats);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.txtWidth);
             this.groupBox2.Controls.Add(this.txtHeight);
             this.groupBox2.Controls.Add(this.cboPrintDensity);
@@ -159,14 +163,32 @@ namespace ZPL_Print_Testing
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(12, 139);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(283, 129);
+            this.groupBox2.Size = new System.Drawing.Size(283, 156);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Label";
             // 
+            // cboSavedFormats
+            // 
+            this.cboSavedFormats.FormattingEnabled = true;
+            this.cboSavedFormats.Location = new System.Drawing.Point(86, 31);
+            this.cboSavedFormats.Name = "cboSavedFormats";
+            this.cboSavedFormats.Size = new System.Drawing.Size(132, 23);
+            this.cboSavedFormats.TabIndex = 9;
+            this.cboSavedFormats.SelectedIndexChanged += new System.EventHandler(this.cboSavedFormats_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 34);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 15);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Width (in)";
+            // 
             // txtWidth
             // 
-            this.txtWidth.Location = new System.Drawing.Point(86, 31);
+            this.txtWidth.Location = new System.Drawing.Point(86, 60);
             this.txtWidth.Mask = "00";
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.PromptChar = ' ';
@@ -177,7 +199,7 @@ namespace ZPL_Print_Testing
             // 
             // txtHeight
             // 
-            this.txtHeight.Location = new System.Drawing.Point(86, 60);
+            this.txtHeight.Location = new System.Drawing.Point(86, 89);
             this.txtHeight.Mask = "00";
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.PromptChar = ' ';
@@ -194,7 +216,7 @@ namespace ZPL_Print_Testing
             "8dpmm",
             "12dpmm",
             "24dpmm"});
-            this.cboPrintDensity.Location = new System.Drawing.Point(86, 91);
+            this.cboPrintDensity.Location = new System.Drawing.Point(86, 120);
             this.cboPrintDensity.Name = "cboPrintDensity";
             this.cboPrintDensity.Size = new System.Drawing.Size(132, 23);
             this.cboPrintDensity.TabIndex = 6;
@@ -202,7 +224,7 @@ namespace ZPL_Print_Testing
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 94);
+            this.label5.Location = new System.Drawing.Point(6, 123);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 15);
             this.label5.TabIndex = 6;
@@ -211,7 +233,7 @@ namespace ZPL_Print_Testing
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 63);
+            this.label3.Location = new System.Drawing.Point(6, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 15);
             this.label3.TabIndex = 0;
@@ -220,7 +242,7 @@ namespace ZPL_Print_Testing
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 34);
+            this.label4.Location = new System.Drawing.Point(6, 63);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 15);
             this.label4.TabIndex = 2;
@@ -233,7 +255,7 @@ namespace ZPL_Print_Testing
             this.groupBox3.Controls.Add(this.btnPath);
             this.groupBox3.Controls.Add(this.txtPath);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(12, 274);
+            this.groupBox3.Location = new System.Drawing.Point(12, 301);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(283, 84);
             this.groupBox3.TabIndex = 8;
@@ -285,7 +307,7 @@ namespace ZPL_Print_Testing
             // 
             // btnStartStop
             // 
-            this.btnStartStop.Location = new System.Drawing.Point(12, 373);
+            this.btnStartStop.Location = new System.Drawing.Point(12, 400);
             this.btnStartStop.Name = "btnStartStop";
             this.btnStartStop.Size = new System.Drawing.Size(283, 30);
             this.btnStartStop.TabIndex = 9;
@@ -355,6 +377,8 @@ namespace ZPL_Print_Testing
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnStartStop;
         private System.Windows.Forms.Timer timerTick;
+        private System.Windows.Forms.ComboBox cboSavedFormats;
+        private System.Windows.Forms.Label label8;
     }
 }
 
