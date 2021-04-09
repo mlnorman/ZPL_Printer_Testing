@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using ZPL_Print_Testing.Models;
 
@@ -27,6 +29,12 @@ namespace ZPL_Print_Testing
 
             AppConfig = Configuration.GetSection("AppConfig").Get<AppConfig>();
 
+            // check db exists
+            // if not, create it
+            if (!File.Exists(Environment.CurrentDirectory + "/zpl.db"))
+            {
+                
+            }
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();

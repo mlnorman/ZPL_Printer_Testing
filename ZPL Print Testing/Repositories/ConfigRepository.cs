@@ -15,11 +15,18 @@ namespace ZPL_Print_Testing.Repositories
         {
             using (var conn = new SqliteConnection("Date Source=" +System.Environment.CurrentDirectory + "/zpl.db"))
             {
-                var sql = "SELECT * FROM AppConfig;";
+                var sql = "SELECT * FROM AppConfig a" +
+                          "left join LabelFormats l on a.id = l.appConfigId;";
 
-                var appConfig = conn.Query(sql).FirstOrDefault();
+                var appConfig = conn.Query<AppConfig, LabelFormat, AppConfig>(sql, (appConfig, labelFormat) =>
+                {
+                    if (labelFormat != null)
+                    {
+                        appConfig.LabelFormats.Add(labelFormat);
+                    }
+                });
 
-                return appConfig;
+                return appConfig.FirstOrDefault();
             }
 
         }
