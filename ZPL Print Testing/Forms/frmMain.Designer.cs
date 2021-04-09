@@ -1,7 +1,7 @@
 ﻿
 namespace ZPL_Print_Testing
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -33,7 +33,7 @@ namespace ZPL_Print_Testing
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtPort = new System.Windows.Forms.MaskedTextBox();
@@ -56,11 +56,14 @@ namespace ZPL_Print_Testing
             this.label6 = new System.Windows.Forms.Label();
             this.btnStartStop = new System.Windows.Forms.Button();
             this.timerTick = new System.Windows.Forms.Timer(this.components);
+            this.picRunning = new System.Windows.Forms.PictureBox();
+            this.toolStripMenuConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLabel)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picRunning)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -85,16 +88,17 @@ namespace ZPL_Print_Testing
             // mnuFile
             // 
             this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
+            this.toolStripMenuConfig,
+            this.toolStripMenuAbout});
             this.mnuFile.Name = "mnuFile";
             this.mnuFile.Size = new System.Drawing.Size(37, 20);
             this.mnuFile.Text = "File";
             // 
-            // toolStripMenuItem1
+            // toolStripMenuAbout
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
-            this.toolStripMenuItem1.Text = "About";
+            this.toolStripMenuAbout.Name = "toolStripMenuAbout";
+            this.toolStripMenuAbout.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuAbout.Text = "About";
             // 
             // label2
             // 
@@ -125,7 +129,7 @@ namespace ZPL_Print_Testing
             this.txtPort.Name = "txtPort";
             this.txtPort.PromptChar = ' ';
             this.txtPort.Size = new System.Drawing.Size(70, 23);
-            this.txtPort.TabIndex = 8;
+            this.txtPort.TabIndex = 1;
             this.txtPort.Text = "9100";
             this.txtPort.ValidatingType = typeof(int);
             // 
@@ -134,14 +138,14 @@ namespace ZPL_Print_Testing
             this.txtIp.Location = new System.Drawing.Point(74, 32);
             this.txtIp.Name = "txtIp";
             this.txtIp.Size = new System.Drawing.Size(119, 23);
-            this.txtIp.TabIndex = 4;
+            this.txtIp.TabIndex = 0;
             this.txtIp.Text = "127.0.0.1";
             this.txtIp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIp_KeyPress);
             // 
             // imgLabel
             // 
-            this.imgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.imgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.imgLabel.BackColor = System.Drawing.Color.White;
             this.imgLabel.Location = new System.Drawing.Point(301, 45);
@@ -174,7 +178,7 @@ namespace ZPL_Print_Testing
             this.cboSavedFormats.Location = new System.Drawing.Point(86, 31);
             this.cboSavedFormats.Name = "cboSavedFormats";
             this.cboSavedFormats.Size = new System.Drawing.Size(132, 23);
-            this.cboSavedFormats.TabIndex = 9;
+            this.cboSavedFormats.TabIndex = 2;
             this.cboSavedFormats.SelectedIndexChanged += new System.EventHandler(this.cboSavedFormats_SelectedIndexChanged);
             // 
             // label8
@@ -193,7 +197,7 @@ namespace ZPL_Print_Testing
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.PromptChar = ' ';
             this.txtWidth.Size = new System.Drawing.Size(70, 23);
-            this.txtWidth.TabIndex = 7;
+            this.txtWidth.TabIndex = 3;
             this.txtWidth.Text = "4";
             this.txtWidth.ValidatingType = typeof(int);
             // 
@@ -204,7 +208,7 @@ namespace ZPL_Print_Testing
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.PromptChar = ' ';
             this.txtHeight.Size = new System.Drawing.Size(70, 23);
-            this.txtHeight.TabIndex = 6;
+            this.txtHeight.TabIndex = 4;
             this.txtHeight.Text = "6";
             this.txtHeight.ValidatingType = typeof(int);
             // 
@@ -219,7 +223,7 @@ namespace ZPL_Print_Testing
             this.cboPrintDensity.Location = new System.Drawing.Point(86, 120);
             this.cboPrintDensity.Name = "cboPrintDensity";
             this.cboPrintDensity.Size = new System.Drawing.Size(132, 23);
-            this.cboPrintDensity.TabIndex = 6;
+            this.cboPrintDensity.TabIndex = 5;
             // 
             // label5
             // 
@@ -277,7 +281,7 @@ namespace ZPL_Print_Testing
             this.chkSaveLabels.Location = new System.Drawing.Point(87, 20);
             this.chkSaveLabels.Name = "chkSaveLabels";
             this.chkSaveLabels.Size = new System.Drawing.Size(15, 14);
-            this.chkSaveLabels.TabIndex = 9;
+            this.chkSaveLabels.TabIndex = 6;
             this.chkSaveLabels.UseVisualStyleBackColor = true;
             // 
             // btnPath
@@ -320,11 +324,29 @@ namespace ZPL_Print_Testing
             this.timerTick.Interval = 1000;
             this.timerTick.Tick += new System.EventHandler(this.timerTick_Tick);
             // 
+            // picRunning
+            // 
+            this.picRunning.BackColor = System.Drawing.Color.Transparent;
+            this.picRunning.Image = global::ZPL_Print_Testing.Properties.Resources.run;
+            this.picRunning.Location = new System.Drawing.Point(115, 436);
+            this.picRunning.Name = "picRunning";
+            this.picRunning.Size = new System.Drawing.Size(69, 64);
+            this.picRunning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picRunning.TabIndex = 10;
+            this.picRunning.TabStop = false;
+            // 
+            // toolStripMenuConfig
+            // 
+            this.toolStripMenuConfig.Name = "toolStripMenuConfig";
+            this.toolStripMenuConfig.Size = new System.Drawing.Size(110, 22);
+            this.toolStripMenuConfig.Text = "Config";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 825);
+            this.Controls.Add(this.picRunning);
             this.Controls.Add(this.btnStartStop);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -346,6 +368,7 @@ namespace ZPL_Print_Testing
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picRunning)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,7 +379,7 @@ namespace ZPL_Print_Testing
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuFile;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuAbout;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtIp;
@@ -379,6 +402,8 @@ namespace ZPL_Print_Testing
         private System.Windows.Forms.Timer timerTick;
         private System.Windows.Forms.ComboBox cboSavedFormats;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox picRunning;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuConfig;
     }
 }
 

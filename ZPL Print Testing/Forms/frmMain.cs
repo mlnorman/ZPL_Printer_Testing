@@ -17,7 +17,7 @@ using Message = ZPL_Print_Testing.Models.Message;
 
 namespace ZPL_Print_Testing
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
         private CancellationTokenSource m_cancellationTokenSource;
         private CancellationToken m_cancellationToken;
@@ -28,7 +28,7 @@ namespace ZPL_Print_Testing
         //private DispatcherTimer timer;
 
 
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -62,12 +62,16 @@ namespace ZPL_Print_Testing
                     m_cancellationToken);
 
                 btnStartStop.Text = "Stop";
+                picRunning.Visible = true;
+                SetFieldsReadOnly();
                 m_tasks.Add(t);
                 timerTick.Start();
             }
             else
             {
                 m_cancellationTokenSource.Cancel();
+                SetFieldsEnabled();
+                picRunning.Visible = false;
                 Console.WriteLine("Task cancellation requested");
                 btnStartStop.Text = "Start";
                 timerTick.Stop();
@@ -187,6 +191,8 @@ namespace ZPL_Print_Testing
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            picRunning.Visible = false;
+
             // load default from appsettings if they are set
             var settings = Program.AppConfig;
 
@@ -210,9 +216,7 @@ namespace ZPL_Print_Testing
             chkSaveLabels.Checked = settings.SaveLabels;
             txtPath.Text = settings.SaveLabelPath;
 
-            // otherwise, leave it all blank
-
-            //cboPrintDensity.SelectedItem = "8dpmm";
+            toolStripMenuConfig.Click += (sender, e) => { OpenConfigForm(); };
         }
 
         private void cboSavedFormats_SelectedIndexChanged(object sender, EventArgs e)
@@ -234,5 +238,33 @@ namespace ZPL_Print_Testing
                 }
             }
         }
+
+        private void SetFieldsReadOnly()
+        {
+            txtIp.Enabled = false;
+            txtPort.Enabled = false;
+            cboPrintDensity.Enabled = false;
+            cboSavedFormats.Enabled = false;
+            txtHeight.Enabled = false;
+            txtWidth.Enabled = false;
+            txtPath.Enabled = false;
+            chkSaveLabels.Enabled = false;
+            btnPath.Enabled = false;
+        }
+
+        private void SetFieldsEnabled()
+        {
+            txtIp.Enabled = true;
+            txtPort.Enabled = true;
+            cboPrintDensity.Enabled = true;
+            cboSavedFormats.Enabled = true;
+            txtHeight.Enabled = true;
+            txtWidth.Enabled = true;
+            txtPath.Enabled = true;
+            chkSaveLabels.Enabled = true;
+            btnPath.Enabled = true;
+        }
+
+        private void OpenConfigForm() { }
     }
 }
