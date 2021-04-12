@@ -8,6 +8,14 @@ namespace ZPL_Print_Testing.Models
 {
     public class AppConfig
     {
+
+        public AppConfig()
+        {
+            LabelFormats = new List<LabelFormat>();
+        }
+
+        public int Id { get; set; }
+
         public string IpAddress { get; set; }
 
         public int Port { get; set; }

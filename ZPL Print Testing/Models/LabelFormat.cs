@@ -10,6 +10,8 @@ namespace ZPL_Print_Testing.Models
     public class LabelFormat
     {
 
+        public int AppConfigId { get; set; }
+
         public string Name { get; set; }
 
         public int Height { get; set; }
