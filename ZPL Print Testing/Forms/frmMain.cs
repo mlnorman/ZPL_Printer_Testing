@@ -11,7 +11,10 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZPL_Print_Testing.Forms;
+using ZPL_Print_Testing.Models;
 using ZPL_Print_Testing.Servers;
+using ZPL_Print_Testing.Services;
 using ZPL_Print_Testing.ViewModels;
 using Message = ZPL_Print_Testing.Models.Message;
 
@@ -23,14 +26,20 @@ namespace ZPL_Print_Testing
         private CancellationToken m_cancellationToken;
         private ConcurrentBag<Task> m_tasks;
         private ConcurrentQueue<Models.Message> messages;
-
+        private readonly IConfigService _configService;
         private Server m_server;
+
+        private AppConfig m_settings;
         //private DispatcherTimer timer;
 
 
         public frmMain()
         {
             InitializeComponent();
+
+            _configService = new ConfigService();
+
+            
         }
 
         private void txtIp_KeyPress(object sender, KeyPressEventArgs e)
@@ -194,13 +203,13 @@ namespace ZPL_Print_Testing
             picRunning.Visible = false;
 
             // load default from appsettings if they are set
-            var settings = Program.AppConfig;
+            m_settings = _configService.GetAppConfig();
 
-            txtIp.Text = settings.IpAddress;
-            txtPort.Text = settings.Port.ToString();
+            txtIp.Text = m_settings.IpAddress;
+            txtPort.Text = m_settings.Port.ToString();
 
             //add each format,  look for a default label format, if it exist, set it and set values
-            foreach (var format in settings.LabelFormats)
+            foreach (var format in m_settings.LabelFormats)
             {
                 cboSavedFormats.Items.Add(format.Name);
 
@@ -213,20 +222,20 @@ namespace ZPL_Print_Testing
                 }
             }
 
-            chkSaveLabels.Checked = settings.SaveLabels;
-            txtPath.Text = settings.SaveLabelPath;
+            chkSaveLabels.Checked = m_settings.SaveLabels;
+            txtPath.Text = m_settings.SaveLabelPath;
 
             toolStripMenuConfig.Click += (sender, e) => { OpenConfigForm(); };
         }
 
         private void cboSavedFormats_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var settings = Program.AppConfig;
+            ;
 
             if (cboSavedFormats.SelectedItem != null)
             {
                 // try and find item, then update fields if it exists
-                foreach (var format in settings.LabelFormats)
+                foreach (var format in m_settings.LabelFormats)
                 {
                     if (format.Name.Equals(cboSavedFormats.SelectedItem.ToString()))
                     {
@@ -265,6 +274,10 @@ namespace ZPL_Print_Testing
             btnPath.Enabled = true;
         }
 
-        private void OpenConfigForm() { }
+        private void OpenConfigForm()
+        {
+            var f = new frmConfig();
+            f.Show();
+        }
     }
 }

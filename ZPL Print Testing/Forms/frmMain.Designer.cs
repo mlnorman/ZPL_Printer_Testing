@@ -33,6 +33,7 @@ namespace ZPL_Print_Testing
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -57,7 +58,6 @@ namespace ZPL_Print_Testing
             this.btnStartStop = new System.Windows.Forms.Button();
             this.timerTick = new System.Windows.Forms.Timer(this.components);
             this.picRunning = new System.Windows.Forms.PictureBox();
-            this.toolStripMenuConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLabel)).BeginInit();
@@ -94,10 +94,16 @@ namespace ZPL_Print_Testing
             this.mnuFile.Size = new System.Drawing.Size(37, 20);
             this.mnuFile.Text = "File";
             // 
+            // toolStripMenuConfig
+            // 
+            this.toolStripMenuConfig.Name = "toolStripMenuConfig";
+            this.toolStripMenuConfig.Size = new System.Drawing.Size(110, 22);
+            this.toolStripMenuConfig.Text = "Config";
+            // 
             // toolStripMenuAbout
             // 
             this.toolStripMenuAbout.Name = "toolStripMenuAbout";
-            this.toolStripMenuAbout.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuAbout.Size = new System.Drawing.Size(110, 22);
             this.toolStripMenuAbout.Text = "About";
             // 
             // label2
@@ -144,8 +150,8 @@ namespace ZPL_Print_Testing
             // 
             // imgLabel
             // 
-            this.imgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.imgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.imgLabel.BackColor = System.Drawing.Color.White;
             this.imgLabel.Location = new System.Drawing.Point(301, 45);
@@ -335,13 +341,7 @@ namespace ZPL_Print_Testing
             this.picRunning.TabIndex = 10;
             this.picRunning.TabStop = false;
             // 
-            // toolStripMenuConfig
-            // 
-            this.toolStripMenuConfig.Name = "toolStripMenuConfig";
-            this.toolStripMenuConfig.Size = new System.Drawing.Size(110, 22);
-            this.toolStripMenuConfig.Text = "Config";
-            // 
-            // Form1
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -355,7 +355,7 @@ namespace ZPL_Print_Testing
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(915, 864);
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.ShowIcon = false;
             this.Text = "ZPL Print Tester";
             this.Load += new System.EventHandler(this.Form1_Load);
