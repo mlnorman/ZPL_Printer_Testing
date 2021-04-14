@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using ZPL_Print_Testing.Models;
@@ -11,7 +12,10 @@ namespace ZPL_Print_Testing.Repositories
     {
         AppConfig GetAppConfig();
 
-        void SaveOrUpdateAppConfig(AppConfig appConfig);
+        void SaveAppConfig(AppConfig appConfig);
+
+        void SaveLabelFormat(LabelFormat labelFormat);
+
 
     }
 }

@@ -39,6 +39,8 @@ namespace ZPL_Print_Testing.Forms
             this.btnPath = new System.Windows.Forms.Button();
             this.txtPath = new System.Windows.Forms.TextBox();
             this.grdLabelFormats = new System.Windows.Forms.DataGridView();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnSaveExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdLabelFormats)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,7 +87,7 @@ namespace ZPL_Print_Testing.Forms
             this.txtPort.Name = "txtPort";
             this.txtPort.PromptChar = ' ';
             this.txtPort.Size = new System.Drawing.Size(70, 23);
-            this.txtPort.TabIndex = 10;
+            this.txtPort.TabIndex = 1;
             this.txtPort.Text = "9100";
             this.txtPort.ValidatingType = typeof(int);
             // 
@@ -94,7 +96,7 @@ namespace ZPL_Print_Testing.Forms
             this.txtIp.Location = new System.Drawing.Point(96, 22);
             this.txtIp.Name = "txtIp";
             this.txtIp.Size = new System.Drawing.Size(119, 23);
-            this.txtIp.TabIndex = 9;
+            this.txtIp.TabIndex = 0;
             this.txtIp.Text = "127.0.0.1";
             // 
             // chkSaveLabels
@@ -103,7 +105,7 @@ namespace ZPL_Print_Testing.Forms
             this.chkSaveLabels.Location = new System.Drawing.Point(96, 83);
             this.chkSaveLabels.Name = "chkSaveLabels";
             this.chkSaveLabels.Size = new System.Drawing.Size(15, 14);
-            this.chkSaveLabels.TabIndex = 11;
+            this.chkSaveLabels.TabIndex = 2;
             this.chkSaveLabels.UseVisualStyleBackColor = true;
             // 
             // btnPath
@@ -111,15 +113,16 @@ namespace ZPL_Print_Testing.Forms
             this.btnPath.Location = new System.Drawing.Point(379, 103);
             this.btnPath.Name = "btnPath";
             this.btnPath.Size = new System.Drawing.Size(26, 23);
-            this.btnPath.TabIndex = 13;
+            this.btnPath.TabIndex = 4;
             this.btnPath.UseVisualStyleBackColor = true;
+            this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
             // 
             // txtPath
             // 
             this.txtPath.Location = new System.Drawing.Point(96, 103);
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(277, 23);
-            this.txtPath.TabIndex = 12;
+            this.txtPath.TabIndex = 3;
             // 
             // grdLabelFormats
             // 
@@ -132,13 +135,37 @@ namespace ZPL_Print_Testing.Forms
             this.grdLabelFormats.RowTemplate.Height = 25;
             this.grdLabelFormats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdLabelFormats.Size = new System.Drawing.Size(583, 196);
-            this.grdLabelFormats.TabIndex = 14;
+            this.grdLabelFormats.TabIndex = 5;
+            this.grdLabelFormats.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdLabelFormats_CellMouseDoubleClick);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(525, 372);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(70, 24);
+            this.btnExit.TabIndex = 7;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnSaveExit
+            // 
+            this.btnSaveExit.Location = new System.Drawing.Point(449, 372);
+            this.btnSaveExit.Name = "btnSaveExit";
+            this.btnSaveExit.Size = new System.Drawing.Size(70, 24);
+            this.btnSaveExit.TabIndex = 6;
+            this.btnSaveExit.Text = "Save/Exit";
+            this.btnSaveExit.UseVisualStyleBackColor = true;
+            this.btnSaveExit.Click += new System.EventHandler(this.btnSaveExit_Click);
             // 
             // frmConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(611, 408);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnSaveExit);
             this.Controls.Add(this.grdLabelFormats);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtIp);
@@ -175,6 +202,7 @@ namespace ZPL_Print_Testing.Forms
         private System.Windows.Forms.Button btnPath;
         private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.DataGridView grdLabelFormats;
-
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnSaveExit;
     }
 }

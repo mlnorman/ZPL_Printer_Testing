@@ -41,7 +41,9 @@ namespace ZPL_Print_Testing
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            var f = new frmMain();
+            f.StartPosition = FormStartPosition.CenterScreen;
+            Application.Run(f);
         }
 
         //<summary>
@@ -63,6 +65,8 @@ namespace ZPL_Print_Testing
 
                     conn.Open();
 
+                    // create tables and insert the config object.
+
                     var sql = "CREATE TABLE AppConfig (" +
                               "'Id' INTEGER NOT NULL," +
                               "'IpAddress' TEXT," +
@@ -81,8 +85,15 @@ namespace ZPL_Print_Testing
                               "'PrintDensity' TEXT," +
                               "'IsDefault' INTEGER," +
                               "PRIMARY KEY('id' AUTOINCREMENT)" +
-                              ")";
-
+                              ")" +
+                              "" +
+                              "INSERT INTO AppConfig(IpAddress, Port, SaveLabels, LabelPath) " + // this will insert row with id = 1
+                              "VALUES ('', 0, 0, '');" +
+                              "" +
+                              "INSERT INTO LabelFormats(AppConfigId, Name, Height, Width, PrintDensity, IsDefault) " +
+                              "VALUES (1, 'Test', 6, 4, '8dpmm', 0);" +
+                              "";
+                              
                     using (var cmd = new SqliteCommand(sql, conn))
                     {
                         cmd.ExecuteNonQuery();

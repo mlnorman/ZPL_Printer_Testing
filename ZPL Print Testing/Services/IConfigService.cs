@@ -11,7 +11,9 @@ namespace ZPL_Print_Testing.Services
     {
         AppConfig GetAppConfig();
 
-        void SaveOrUpdateAppConfig(AppConfig appConfig);
+        void SaveAppConfig(AppConfig appConfig);
+
+        void SaveLabelFormat(LabelFormat labelFormat);
 
     }
 }

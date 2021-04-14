@@ -22,9 +22,14 @@ namespace ZPL_Print_Testing.Services
             return _configRepo.GetAppConfig();
         }
 
-        public void SaveOrUpdateAppConfig(AppConfig appConfig)
+        public void SaveAppConfig(AppConfig appConfig)
         {
-            _configRepo.SaveOrUpdateAppConfig(appConfig);
+            _configRepo.SaveAppConfig(appConfig);
+        }
+
+        public void SaveLabelFormat(LabelFormat labelFormat)
+        {
+            _configRepo.SaveLabelFormat(labelFormat);
         }
     }
 }

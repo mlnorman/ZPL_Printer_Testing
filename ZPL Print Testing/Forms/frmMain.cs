@@ -200,6 +200,11 @@ namespace ZPL_Print_Testing
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoadData();
+        }
+
+        private void LoadData()
+        {
             picRunning.Visible = false;
 
             // load default from appsettings if they are set
@@ -226,6 +231,8 @@ namespace ZPL_Print_Testing
             txtPath.Text = m_settings.SaveLabelPath;
 
             toolStripMenuConfig.Click += (sender, e) => { OpenConfigForm(); };
+
+
         }
 
         private void cboSavedFormats_SelectedIndexChanged(object sender, EventArgs e)
@@ -259,6 +266,7 @@ namespace ZPL_Print_Testing
             txtPath.Enabled = false;
             chkSaveLabels.Enabled = false;
             btnPath.Enabled = false;
+            toolStripMenuConfig.Enabled = false;
         }
 
         private void SetFieldsEnabled()
@@ -272,11 +280,14 @@ namespace ZPL_Print_Testing
             txtPath.Enabled = true;
             chkSaveLabels.Enabled = true;
             btnPath.Enabled = true;
+            toolStripMenuConfig.Enabled = true;
         }
 
         private void OpenConfigForm()
         {
             var f = new frmConfig();
+            f.ConfigHasChanged += LoadData;
+            f.StartPosition = FormStartPosition.CenterScreen;
             f.Show();
         }
     }

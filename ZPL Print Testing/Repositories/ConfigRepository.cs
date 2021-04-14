@@ -40,9 +40,61 @@ namespace ZPL_Print_Testing.Repositories
         //<summary>
         // Save or update app config data.  
         //</summary>
-        public void SaveOrUpdateAppConfig(AppConfig appConfig)
+        public void SaveAppConfig(AppConfig appConfig)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqliteConnection("Data Source=" + System.Environment.CurrentDirectory + "/zpl.db"))
+            {
+                var sql =
+                    "UPDATE AppConfig SET IpAddress = @IpAddress, Port = @Port, SaveLabels = @SaveLabels, SaveLabelPath = @SaveLabelPath WHERE Id = @Id ";
+
+                var result = conn.Execute(sql, new
+                {
+                    appConfig.IpAddress,
+                    appConfig.Port,
+                    SaveLabels = appConfig.SaveLabels ? 1 : 0,
+                    appConfig.SaveLabelPath,
+                    appConfig.Id
+                });
+
+            }
+        }
+
+        public void SaveLabelFormat(LabelFormat labelFormat)
+        {
+            using (var conn = new SqliteConnection("Data Source=" + System.Environment.CurrentDirectory + "/zpl.db"))
+            {
+                if (labelFormat.Id > 0)
+                {
+                    var sql =
+                        "UPDATE LabelFormats SET Name = @Name, Height = @Height, Width = @Width, PrintDensity = @PrintDensity, IsDefault = @IsDefault WHERE Id = @Id ";
+
+                    var result = conn.Execute(sql, new
+                    {
+                        labelFormat.Name,
+                        labelFormat.Height,
+                        labelFormat.Width,
+                        labelFormat.PrintDensity,
+                        labelFormat.IsDefault,
+                        labelFormat.Id
+                    });
+                }
+                else
+                {
+                    var sql =
+                        "insert into LabelFormats (AppConfigId, Name, Height, Width, PrintDensity, IsDefault) VALUES" +
+                        "(@AppConfigId, @Name, @Height, @Width, @PrintDensity, @IsDefault)";
+                    
+                    var result = conn.Execute(sql, new
+                    {
+                        labelFormat.AppConfigId,
+                        labelFormat.Name,
+                        labelFormat.Height,
+                        labelFormat.Width,
+                        labelFormat.PrintDensity,
+                        labelFormat.IsDefault
+                    });
+                }
+            }
         }
     }
 }
