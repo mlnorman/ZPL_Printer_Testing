@@ -192,9 +192,9 @@ namespace ZPL_Print_Testing
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(6, 34);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 15);
+            this.label8.Size = new System.Drawing.Size(79, 15);
             this.label8.TabIndex = 8;
-            this.label8.Text = "Width (in)";
+            this.label8.Text = "Saved Format";
             // 
             // txtWidth
             // 
