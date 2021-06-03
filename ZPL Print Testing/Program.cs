@@ -85,9 +85,9 @@ namespace ZPL_Print_Testing
                               "'PrintDensity' TEXT," +
                               "'IsDefault' INTEGER," +
                               "PRIMARY KEY('id' AUTOINCREMENT)" +
-                              ")" +
+                              ");" +
                               "" +
-                              "INSERT INTO AppConfig(IpAddress, Port, SaveLabels, LabelPath) " + // this will insert row with id = 1
+                              "INSERT INTO AppConfig(IpAddress, Port, SaveLabels, SaveLabelPath) " + // this will insert row with id = 1
                               "VALUES ('', 0, 0, '');" +
                               "" +
                               "INSERT INTO LabelFormats(AppConfigId, Name, Height, Width, PrintDensity, IsDefault) " +
