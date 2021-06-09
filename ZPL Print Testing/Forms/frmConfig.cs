@@ -52,10 +52,19 @@ namespace ZPL_Print_Testing.Forms
             var source = new BindingSource(bindingList, null);
             grdLabelFormats.DataSource = source;
 
+            // Fix header names
+            ChangeHeaders();
+
             // This is needed to clear the default first row selection 
             // when the form is loaded.
             grdLabelFormats.ClearSelection();
 
+        }
+
+        private void ChangeHeaders()
+        {
+            grdLabelFormats.Columns["IsDefault"].HeaderText = "Default";
+            grdLabelFormats.Columns["PrintDensity"].HeaderText = "Print Density";
         }
 
         private void grdLabelFormats_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
