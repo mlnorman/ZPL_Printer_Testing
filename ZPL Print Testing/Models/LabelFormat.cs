@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,5 +27,6 @@ namespace ZPL_Print_Testing.Models
         public string PrintDensity { get; set; }
 
         public bool IsDefault { get; set; }
+
     }
 }

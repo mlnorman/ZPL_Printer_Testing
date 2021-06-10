@@ -29,6 +29,7 @@ namespace ZPL_Print_Testing.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,9 +40,13 @@ namespace ZPL_Print_Testing.Forms
             this.btnPath = new System.Windows.Forms.Button();
             this.txtPath = new System.Windows.Forms.TextBox();
             this.grdLabelFormats = new System.Windows.Forms.DataGridView();
+            this.ctxGrid = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSaveExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdLabelFormats)).BeginInit();
+            this.ctxGrid.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -129,14 +134,38 @@ namespace ZPL_Print_Testing.Forms
             this.grdLabelFormats.AllowUserToAddRows = false;
             this.grdLabelFormats.AllowUserToDeleteRows = false;
             this.grdLabelFormats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdLabelFormats.ContextMenuStrip = this.ctxGrid;
             this.grdLabelFormats.Location = new System.Drawing.Point(12, 143);
+            this.grdLabelFormats.MultiSelect = false;
             this.grdLabelFormats.Name = "grdLabelFormats";
             this.grdLabelFormats.ReadOnly = true;
             this.grdLabelFormats.RowTemplate.Height = 25;
             this.grdLabelFormats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdLabelFormats.ShowCellErrors = false;
+            this.grdLabelFormats.ShowCellToolTips = false;
             this.grdLabelFormats.Size = new System.Drawing.Size(583, 196);
             this.grdLabelFormats.TabIndex = 5;
             this.grdLabelFormats.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdLabelFormats_CellMouseDoubleClick);
+            // 
+            // ctxGrid
+            // 
+            this.ctxGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuAdd,
+            this.menuDelete});
+            this.ctxGrid.Name = "ctxGrid";
+            this.ctxGrid.Size = new System.Drawing.Size(108, 48);
+            // 
+            // menuAdd
+            // 
+            this.menuAdd.Name = "menuAdd";
+            this.menuAdd.Size = new System.Drawing.Size(107, 22);
+            this.menuAdd.Text = "Add";
+            // 
+            // menuDelete
+            // 
+            this.menuDelete.Name = "menuDelete";
+            this.menuDelete.Size = new System.Drawing.Size(107, 22);
+            this.menuDelete.Text = "Delete";
             // 
             // btnExit
             // 
@@ -185,6 +214,7 @@ namespace ZPL_Print_Testing.Forms
             this.Text = "Configuration";
             this.Load += new System.EventHandler(this.frmConfig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdLabelFormats)).EndInit();
+            this.ctxGrid.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +234,8 @@ namespace ZPL_Print_Testing.Forms
         private System.Windows.Forms.DataGridView grdLabelFormats;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnSaveExit;
+        private System.Windows.Forms.ContextMenuStrip ctxGrid;
+        private System.Windows.Forms.ToolStripMenuItem menuAdd;
+        private System.Windows.Forms.ToolStripMenuItem menuDelete;
     }
 }

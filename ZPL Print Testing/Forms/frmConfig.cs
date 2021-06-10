@@ -36,13 +36,16 @@ namespace ZPL_Print_Testing.Forms
 
         private void frmConfig_Load(object sender, EventArgs e)
         {
-            m_config = _configService.GetAppConfig();
+            // add events to context menu items
+            menuAdd.Click += (sender, e) => { AddItem(); };
+            menuDelete.Click += (sender, e) => { DeleteItem(e); };
 
             LoadData();
         }
 
         private void LoadData()
         {
+            m_config = _configService.GetAppConfig();
             txtIp.Text = m_config.IpAddress;
             txtPort.Text = m_config.Port.ToString();
             chkSaveLabels.Checked = m_config.SaveLabels;
@@ -69,6 +72,8 @@ namespace ZPL_Print_Testing.Forms
 
         private void grdLabelFormats_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+
+
             var f = new frmLabelFormats(m_config.LabelFormats[e.RowIndex]);
             f.StartPosition = FormStartPosition.CenterScreen;
             f.AddedOrUpdated += RefreshGrid;
@@ -112,7 +117,7 @@ namespace ZPL_Print_Testing.Forms
 
         private void RefreshGrid()
         {
-            var config = _configService.GetAppConfig();
+            m_config = _configService.GetAppConfig();
             var bindingList = new BindingList<LabelFormat>(m_config.LabelFormats);
             var source = new BindingSource(bindingList, null);
             grdLabelFormats.DataSource = source;
@@ -121,6 +126,34 @@ namespace ZPL_Print_Testing.Forms
             // when the form is loaded.
             grdLabelFormats.ClearSelection();
             m_labelFormatHasChanged = true;
+        }
+
+        private void AddItem()
+        {
+            var f = new frmLabelFormats(m_config.Id);
+            f.StartPosition = FormStartPosition.CenterScreen;
+            f.AddedOrUpdated += RefreshGrid;
+            f.ShowDialog();
+        }
+
+        private void DeleteItem(EventArgs e)
+        {
+            if (grdLabelFormats.SelectedRows.Count == 0) return;
+
+            var selectedRow = (grdLabelFormats.SelectedRows[0].DataBoundItem as LabelFormat);
+            try
+            {
+                _configService.DeleteLabelFormat(selectedRow.Id);
+                LoadData();
+            }
+            catch (Exception exception)
+            {
+                string message =
+                    $"There was an issue deleting the record from the database.{Environment.NewLine} {Environment.NewLine}{exception.Message}";
+                MessageBox.Show(message , "Label Formats",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }

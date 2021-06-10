@@ -19,20 +19,32 @@ namespace ZPL_Print_Testing.Repositories
             using (var conn = new SqliteConnection("Data Source=" +System.Environment.CurrentDirectory + "/zpl.db"))
             {
                 var sql = "SELECT * FROM AppConfig " +
-                          "left join LabelFormats on AppConfig.id = LabelFormats.AppConfigId;";
+                          "left join LabelFormats on AppConfig.id = LabelFormats.AppConfigId " +
+                          "ORDER BY LabelFormats.Id;";
+
+                var appConfigs = new List<AppConfig>();
 
                 var appConfig = conn.Query<AppConfig, LabelFormat, AppConfig>(sql, (appConfig, labelFormat) =>
                 {
                     if (labelFormat != null)
                     {
-                        labelFormat.AppConfigId = appConfig.Id;
-                        appConfig.LabelFormats.Add(labelFormat);
-                    }
+                        var existingConfig = appConfigs.FirstOrDefault(x => x.Id == appConfig.Id);
 
+                        if (existingConfig == null)
+                        {
+                            labelFormat.AppConfigId = appConfig.Id;
+                            appConfig.LabelFormats.Add(labelFormat);
+                            appConfigs.Add(appConfig);
+                        }
+                        else
+                        {
+                            existingConfig.LabelFormats.Add(labelFormat);
+                        }
+                    }
                     return appConfig;
                 });
 
-                return appConfig.FirstOrDefault();
+                return appConfigs.FirstOrDefault();
             }
 
         }
@@ -94,6 +106,21 @@ namespace ZPL_Print_Testing.Repositories
                         labelFormat.IsDefault
                     });
                 }
+            }
+        }
+
+        public void DeleteLabelFormat(int id)
+        {
+            using (var conn = new SqliteConnection("Data Source=" + System.Environment.CurrentDirectory + "/zpl.db"))
+            {
+                var sql =
+                    "DELETE FROM LabelFormats WHERE Id = @id ";
+
+                var result = conn.Execute(sql, new
+                {
+                    id
+                });
+
             }
         }
     }

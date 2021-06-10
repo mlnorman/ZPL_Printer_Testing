@@ -21,11 +21,14 @@ namespace ZPL_Print_Testing.Forms
 
         public event LabelFormatAddedOrUpdated AddedOrUpdated;
 
-        public frmLabelFormats()
+        public frmLabelFormats(int appConfigId)
         {
             InitializeComponent();
             //m_labelFormat = new LabelFormat();
             //_configService = new ConfigService();
+            this.m_labelFormat = new LabelFormat();
+            this.m_labelFormat.AppConfigId = appConfigId;
+            _configService = new ConfigService();
         }
 
         public frmLabelFormats(LabelFormat labelFormat)
