@@ -214,6 +214,7 @@ namespace ZPL_Print_Testing
             txtPort.Text = m_settings.Port.ToString();
 
             //add each format,  look for a default label format, if it exist, set it and set values
+            cboSavedFormats.Items.Clear();
             foreach (var format in m_settings.LabelFormats)
             {
                 cboSavedFormats.Items.Add(format.Name);
