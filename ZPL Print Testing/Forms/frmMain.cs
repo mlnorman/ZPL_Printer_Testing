@@ -28,6 +28,7 @@ namespace ZPL_Print_Testing
         private ConcurrentQueue<Models.Message> messages;
         private readonly IConfigService _configService;
         private Server m_server;
+        private string m_lastZPLSent;
 
         private AppConfig m_settings;
         //private DispatcherTimer timer;
@@ -181,6 +182,7 @@ namespace ZPL_Print_Testing
                 if (message != null)
                 {
                     imgLabel.Image = Image.FromStream(new MemoryStream(message.ImageBytes));
+                    m_lastZPLSent = message.ZPLString;
                 }
             }
         }
@@ -232,6 +234,7 @@ namespace ZPL_Print_Testing
             txtPath.Text = m_settings.SaveLabelPath;
 
             toolStripMenuConfig.Click += (sender, e) => { OpenConfigForm(); };
+            toolStripMenuPrintLabel.Click += (sender, e) => { PrintLabel();};
 
 
         }
@@ -290,6 +293,20 @@ namespace ZPL_Print_Testing
             f.ConfigHasChanged += LoadData;
             f.StartPosition = FormStartPosition.CenterScreen;
             f.Show();
+        }
+
+        private void PrintLabel()
+        {
+
+            if (string.IsNullOrWhiteSpace(m_lastZPLSent))
+            {
+                MessageBox.Show("No label available to sent to a printer.");
+                return;
+            };
+            
+            var f = new frmPrintLabel(m_lastZPLSent);
+            f.StartPosition = FormStartPosition.CenterScreen;
+            f.ShowDialog();
         }
     }
 }

@@ -87,11 +87,24 @@ namespace ZPL_Print_Testing
                               "PRIMARY KEY('id' AUTOINCREMENT)" +
                               ");" +
                               "" +
+                              "CREATE TABLE Printers (" +
+                              "'Id' INTEGER NOT NULL," +
+                              "'AppConfigId' INTEGER," +
+                              "'Name' Text," +
+                              "'IpAddress' Text," +
+                              "'Port' INTEGER," +
+                              "'IsDefault' INTEGER," +
+                              "PRIMARY KEY('id' AUTOINCREMENT)" +
+                              ");" +
+                              "" +
                               "INSERT INTO AppConfig(IpAddress, Port, SaveLabels, SaveLabelPath) " + // this will insert row with id = 1
-                              "VALUES ('', 0, 0, '');" +
+                              "VALUES ('127.0.0.1', 9100, 0, '');" +
                               "" +
                               "INSERT INTO LabelFormats(AppConfigId, Name, Height, Width, PrintDensity, IsDefault) " +
                               "VALUES (1, 'Test', 6, 4, '8dpmm', 0);" +
+                              "" +
+                              "INSERT INTO Printers(AppConfigId, Name, IpAddress, Port, IsDefault)" +
+                              "VALUES (1, 'Test', '127.0.0.1', 9100, 1);" +
                               "";
                               
                     using (var cmd = new SqliteCommand(sql, conn))

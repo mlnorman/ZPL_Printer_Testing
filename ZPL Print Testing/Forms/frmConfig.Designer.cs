@@ -45,8 +45,16 @@ namespace ZPL_Print_Testing.Forms
             this.menuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSaveExit = new System.Windows.Forms.Button();
+            this.grdPrinters = new System.Windows.Forms.DataGridView();
+            this.ctxPrinters = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuPrinterAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPrinterDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdLabelFormats)).BeginInit();
             this.ctxGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPrinters)).BeginInit();
+            this.ctxPrinters.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -88,12 +96,11 @@ namespace ZPL_Print_Testing.Forms
             // txtPort
             // 
             this.txtPort.Location = new System.Drawing.Point(96, 50);
-            this.txtPort.Mask = "0000";
+            this.txtPort.Mask = "0";
             this.txtPort.Name = "txtPort";
             this.txtPort.PromptChar = ' ';
             this.txtPort.Size = new System.Drawing.Size(70, 23);
             this.txtPort.TabIndex = 1;
-            this.txtPort.Text = "9100";
             this.txtPort.ValidatingType = typeof(int);
             // 
             // txtIp
@@ -103,6 +110,7 @@ namespace ZPL_Print_Testing.Forms
             this.txtIp.Size = new System.Drawing.Size(119, 23);
             this.txtIp.TabIndex = 0;
             this.txtIp.Text = "127.0.0.1";
+            this.txtIp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIp_KeyPress);
             // 
             // chkSaveLabels
             // 
@@ -135,7 +143,7 @@ namespace ZPL_Print_Testing.Forms
             this.grdLabelFormats.AllowUserToDeleteRows = false;
             this.grdLabelFormats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdLabelFormats.ContextMenuStrip = this.ctxGrid;
-            this.grdLabelFormats.Location = new System.Drawing.Point(12, 143);
+            this.grdLabelFormats.Location = new System.Drawing.Point(12, 158);
             this.grdLabelFormats.MultiSelect = false;
             this.grdLabelFormats.Name = "grdLabelFormats";
             this.grdLabelFormats.ReadOnly = true;
@@ -169,7 +177,7 @@ namespace ZPL_Print_Testing.Forms
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(525, 372);
+            this.btnExit.Location = new System.Drawing.Point(525, 572);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(70, 24);
             this.btnExit.TabIndex = 7;
@@ -179,7 +187,7 @@ namespace ZPL_Print_Testing.Forms
             // 
             // btnSaveExit
             // 
-            this.btnSaveExit.Location = new System.Drawing.Point(449, 372);
+            this.btnSaveExit.Location = new System.Drawing.Point(449, 572);
             this.btnSaveExit.Name = "btnSaveExit";
             this.btnSaveExit.Size = new System.Drawing.Size(70, 24);
             this.btnSaveExit.TabIndex = 6;
@@ -187,12 +195,70 @@ namespace ZPL_Print_Testing.Forms
             this.btnSaveExit.UseVisualStyleBackColor = true;
             this.btnSaveExit.Click += new System.EventHandler(this.btnSaveExit_Click);
             // 
+            // grdPrinters
+            // 
+            this.grdPrinters.AllowUserToAddRows = false;
+            this.grdPrinters.AllowUserToDeleteRows = false;
+            this.grdPrinters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdPrinters.ContextMenuStrip = this.ctxPrinters;
+            this.grdPrinters.Location = new System.Drawing.Point(12, 391);
+            this.grdPrinters.MultiSelect = false;
+            this.grdPrinters.Name = "grdPrinters";
+            this.grdPrinters.ReadOnly = true;
+            this.grdPrinters.RowTemplate.Height = 25;
+            this.grdPrinters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPrinters.ShowCellErrors = false;
+            this.grdPrinters.ShowCellToolTips = false;
+            this.grdPrinters.Size = new System.Drawing.Size(583, 162);
+            this.grdPrinters.TabIndex = 8;
+            // 
+            // ctxPrinters
+            // 
+            this.ctxPrinters.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuPrinterAdd,
+            this.menuPrinterDelete});
+            this.ctxPrinters.Name = "ctxPrinters";
+            this.ctxPrinters.Size = new System.Drawing.Size(108, 48);
+            // 
+            // menuPrinterAdd
+            // 
+            this.menuPrinterAdd.Name = "menuPrinterAdd";
+            this.menuPrinterAdd.Size = new System.Drawing.Size(107, 22);
+            this.menuPrinterAdd.Text = "Add";
+            // 
+            // menuPrinterDelete
+            // 
+            this.menuPrinterDelete.Name = "menuPrinterDelete";
+            this.menuPrinterDelete.Size = new System.Drawing.Size(107, 22);
+            this.menuPrinterDelete.Text = "Delete";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 140);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(115, 15);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Saved Label Formats";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 373);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 15);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Printers";
+            // 
             // frmConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(611, 408);
+            this.ClientSize = new System.Drawing.Size(609, 604);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.grdPrinters);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSaveExit);
             this.Controls.Add(this.grdLabelFormats);
@@ -206,15 +272,15 @@ namespace ZPL_Print_Testing.Forms
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(627, 447);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(627, 447);
             this.Name = "frmConfig";
             this.ShowIcon = false;
             this.Text = "Configuration";
             this.Load += new System.EventHandler(this.frmConfig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdLabelFormats)).EndInit();
             this.ctxGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdPrinters)).EndInit();
+            this.ctxPrinters.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,5 +303,11 @@ namespace ZPL_Print_Testing.Forms
         private System.Windows.Forms.ContextMenuStrip ctxGrid;
         private System.Windows.Forms.ToolStripMenuItem menuAdd;
         private System.Windows.Forms.ToolStripMenuItem menuDelete;
+        private System.Windows.Forms.DataGridView grdPrinters;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ContextMenuStrip ctxPrinters;
+        private System.Windows.Forms.ToolStripMenuItem menuPrinterAdd;
+        private System.Windows.Forms.ToolStripMenuItem menuPrinterDelete;
     }
 }

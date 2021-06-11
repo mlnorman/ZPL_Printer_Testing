@@ -12,6 +12,7 @@ namespace ZPL_Print_Testing.Models
         public AppConfig()
         {
             LabelFormats = new List<LabelFormat>();
+            Printers = new List<Printer>();
         }
 
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace ZPL_Print_Testing.Models
         public bool SaveLabels { get; set; }
 
         public string SaveLabelPath { get; set; }
+
+        public List<Printer> Printers { get; set; }
     }
 }

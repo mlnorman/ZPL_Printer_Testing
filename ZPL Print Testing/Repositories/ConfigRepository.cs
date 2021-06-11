@@ -20,27 +20,71 @@ namespace ZPL_Print_Testing.Repositories
             {
                 var sql = "SELECT * FROM AppConfig " +
                           "left join LabelFormats on AppConfig.id = LabelFormats.AppConfigId " +
-                          "ORDER BY LabelFormats.Id;";
+                          "left join Printers on AppConfig.id = Printers.AppConfigId " +
+                          "ORDER BY LabelFormats.Id, Printers.Id;";
 
                 var appConfigs = new List<AppConfig>();
 
-                var appConfig = conn.Query<AppConfig, LabelFormat, AppConfig>(sql, (appConfig, labelFormat) =>
+                var appConfig = conn.Query<AppConfig, LabelFormat, Printer, AppConfig>(sql, (appConfig, labelFormat, printer) =>
                 {
-                    if (labelFormat != null)
-                    {
-                        var existingConfig = appConfigs.FirstOrDefault(x => x.Id == appConfig.Id);
 
-                        if (existingConfig == null)
+                    var existingConfig = appConfigs.FirstOrDefault(x => x.Id == appConfig.Id);
+
+
+                    if (existingConfig == null)
+                    {
+                        if (labelFormat != null)
                         {
-                            labelFormat.AppConfigId = appConfig.Id;
                             appConfig.LabelFormats.Add(labelFormat);
-                            appConfigs.Add(appConfig);
                         }
-                        else
+
+                        if (printer != null)
+                        {
+                            appConfig.Printers.Add(printer);
+                        }
+                        appConfigs.Add(appConfig);
+                    }
+                    else
+                    {
+                        if (labelFormat != null)
                         {
                             existingConfig.LabelFormats.Add(labelFormat);
                         }
+
+                        if (printer != null)
+                        {
+                            existingConfig.Printers.Add(printer);
+                        }
                     }
+
+                    //if (labelFormat != null)
+                    //{
+                    //    if (existingConfig == null)
+                    //    {
+                    //        labelFormat.AppConfigId = appConfig.Id;
+                    //        appConfig.LabelFormats.Add(labelFormat);
+                    //        appConfigs.Add(appConfig);
+                    //    }
+                    //    else
+                    //    {
+                    //        existingConfig.LabelFormats.Add(labelFormat);
+                    //    }
+                    //}
+
+                    //if (printer != null)
+                    //{
+                    //    if (existingConfig == null)
+                    //    {
+                    //        printer.AppConfigId = appConfig.Id;
+                    //        appConfig.Printers.Add(printer);
+                    //        appConfigs.Add(appConfig);
+                    //    }
+                    //    else
+                    //    {
+                    //        existingConfig.Printers.Add(printer);
+                    //    }
+                    //}
+
                     return appConfig;
                 });
 
@@ -115,6 +159,57 @@ namespace ZPL_Print_Testing.Repositories
             {
                 var sql =
                     "DELETE FROM LabelFormats WHERE Id = @id ";
+
+                var result = conn.Execute(sql, new
+                {
+                    id
+                });
+
+            }
+        }
+
+        public void SavePrinter(Printer printer)
+        {
+            using (var conn = new SqliteConnection("Data Source=" + System.Environment.CurrentDirectory + "/zpl.db"))
+            {
+                if (printer.Id > 0)
+                {
+                    var sql =
+                        "UPDATE Printers SET Name = @Name, IpAddress = @IpAddress, Port = @Port, IsDefault = @IsDefault WHERE Id = @Id ";
+
+                    var result = conn.Execute(sql, new
+                    {
+                        printer.Name,
+                        printer.IpAddress,
+                        printer.Port,
+                        printer.IsDefault,
+                        printer.Id
+                    });
+                }
+                else
+                {
+                    var sql =
+                        "insert into Printers (AppConfigId, Name, IpAddress, Port, IsDefault) VALUES" +
+                        "(@AppConfigId, @Name, @IpAddress, @Port, @IsDefault)";
+
+                    var result = conn.Execute(sql, new
+                    {
+                        printer.AppConfigId,
+                        printer.Name,
+                        printer.IpAddress,
+                        printer.Port,
+                        printer.IsDefault
+                    });
+                }
+            }
+        }
+
+        public void DeletePrinter(int id)
+        {
+            using (var conn = new SqliteConnection("Data Source=" + System.Environment.CurrentDirectory + "/zpl.db"))
+            {
+                var sql =
+                    "DELETE FROM Printers WHERE Id = @id ";
 
                 var result = conn.Execute(sql, new
                 {

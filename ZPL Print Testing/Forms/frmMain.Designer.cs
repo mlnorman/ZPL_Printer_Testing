@@ -35,6 +35,7 @@ namespace ZPL_Print_Testing
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuPrintLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtPort = new System.Windows.Forms.MaskedTextBox();
@@ -89,7 +90,8 @@ namespace ZPL_Print_Testing
             // 
             this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuConfig,
-            this.toolStripMenuAbout});
+            this.toolStripMenuAbout,
+            this.toolStripMenuPrintLabel});
             this.mnuFile.Name = "mnuFile";
             this.mnuFile.Size = new System.Drawing.Size(37, 20);
             this.mnuFile.Text = "File";
@@ -97,14 +99,23 @@ namespace ZPL_Print_Testing
             // toolStripMenuConfig
             // 
             this.toolStripMenuConfig.Name = "toolStripMenuConfig";
-            this.toolStripMenuConfig.Size = new System.Drawing.Size(110, 22);
+            this.toolStripMenuConfig.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.C)));
+            this.toolStripMenuConfig.Size = new System.Drawing.Size(184, 22);
             this.toolStripMenuConfig.Text = "Config";
             // 
             // toolStripMenuAbout
             // 
             this.toolStripMenuAbout.Name = "toolStripMenuAbout";
-            this.toolStripMenuAbout.Size = new System.Drawing.Size(110, 22);
+            this.toolStripMenuAbout.Size = new System.Drawing.Size(184, 22);
             this.toolStripMenuAbout.Text = "About";
+            // 
+            // toolStripMenuPrintLabel
+            // 
+            this.toolStripMenuPrintLabel.Name = "toolStripMenuPrintLabel";
+            this.toolStripMenuPrintLabel.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.toolStripMenuPrintLabel.Size = new System.Drawing.Size(184, 22);
+            this.toolStripMenuPrintLabel.Text = "Print Label";
             // 
             // label2
             // 
@@ -131,7 +142,7 @@ namespace ZPL_Print_Testing
             // txtPort
             // 
             this.txtPort.Location = new System.Drawing.Point(74, 61);
-            this.txtPort.Mask = "0000";
+            this.txtPort.Mask = "00000";
             this.txtPort.Name = "txtPort";
             this.txtPort.PromptChar = ' ';
             this.txtPort.Size = new System.Drawing.Size(70, 23);
@@ -404,6 +415,7 @@ namespace ZPL_Print_Testing
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox picRunning;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuConfig;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuPrintLabel;
     }
 }
 

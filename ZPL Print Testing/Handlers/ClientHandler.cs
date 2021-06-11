@@ -51,7 +51,7 @@ namespace ZPL_Print_Testing.Handlers
 
                     if (image != null)
                     {
-                        var m = new Message("Image received", image);
+                        var m = new Message("Image received", image, line);
                         messages.Enqueue(m);
                     }
 

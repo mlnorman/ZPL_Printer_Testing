@@ -17,5 +17,9 @@ namespace ZPL_Print_Testing.Services
 
         void DeleteLabelFormat(int id);
 
+        void SavePrinter(Printer printer);
+
+        void DeletePrinter(int id);
+
     }
 }

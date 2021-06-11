@@ -36,5 +36,15 @@ namespace ZPL_Print_Testing.Services
         {
             _configRepo.DeleteLabelFormat(id);
         }
+
+        public void SavePrinter(Printer printer)
+        {
+            _configRepo.SavePrinter(printer);
+        }
+
+        public void DeletePrinter(int id)
+        {
+            _configRepo.DeletePrinter(id);
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZPL_Print_Testing.Models;
@@ -40,6 +41,9 @@ namespace ZPL_Print_Testing.Forms
             menuAdd.Click += (sender, e) => { AddItem(); };
             menuDelete.Click += (sender, e) => { DeleteItem(e); };
 
+            menuPrinterAdd.Click += (sender, e) => { AddPrinter(); };
+            menuPrinterDelete.Click += (sender, e) => { DeletePrinter(e); };
+
             LoadData();
         }
 
@@ -51,16 +55,20 @@ namespace ZPL_Print_Testing.Forms
             chkSaveLabels.Checked = m_config.SaveLabels;
             txtPath.Text = m_config.SaveLabelPath;
 
-            var bindingList = new BindingList<LabelFormat>(m_config.LabelFormats);
-            var source = new BindingSource(bindingList, null);
-            grdLabelFormats.DataSource = source;
+            var labelFormatBindingList = new BindingList<LabelFormat>(m_config.LabelFormats);
+            var labelFormatsSource = new BindingSource(labelFormatBindingList, null);
+            grdLabelFormats.DataSource = labelFormatsSource;
 
+            var printersBindingList = new BindingList<Printer>(m_config.Printers);
+            var printersSource = new BindingSource(printersBindingList, null);
+            grdPrinters.DataSource = printersSource;
             // Fix header names
             ChangeHeaders();
 
             // This is needed to clear the default first row selection 
             // when the form is loaded.
             grdLabelFormats.ClearSelection();
+            grdPrinters.ClearSelection();
 
         }
 
@@ -117,14 +125,7 @@ namespace ZPL_Print_Testing.Forms
 
         private void RefreshGrid()
         {
-            m_config = _configService.GetAppConfig();
-            var bindingList = new BindingList<LabelFormat>(m_config.LabelFormats);
-            var source = new BindingSource(bindingList, null);
-            grdLabelFormats.DataSource = source;
-
-            // This is needed to clear the default first row selection 
-            // when the form is loaded.
-            grdLabelFormats.ClearSelection();
+            LoadData();
             m_labelFormatHasChanged = true;
         }
 
@@ -144,16 +145,52 @@ namespace ZPL_Print_Testing.Forms
             try
             {
                 _configService.DeleteLabelFormat(selectedRow.Id);
-                LoadData();
+                RefreshGrid();
             }
             catch (Exception exception)
             {
                 string message =
                     $"There was an issue deleting the record from the database.{Environment.NewLine} {Environment.NewLine}{exception.Message}";
-                MessageBox.Show(message , "Label Formats",
+                MessageBox.Show(message, "Label Formats",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+        }
+
+        private void AddPrinter()
+        {
+            var f = new frmPrinter(m_config.Id);
+            f.StartPosition = FormStartPosition.CenterScreen;
+            f.AddedOrUpdated += RefreshGrid;
+            f.ShowDialog();
+        }
+
+        private void DeletePrinter(EventArgs e)
+        {
+            if (grdPrinters.SelectedRows.Count == 0) return;
+
+            var selectedRow = (grdPrinters.SelectedRows[0].DataBoundItem as Printer);
+            try
+            {
+                _configService.DeletePrinter(selectedRow.Id);
+                RefreshGrid();
+            }
+            catch (Exception exception)
+            {
+                string message =
+                    $"There was an issue deleting the record from the database.{Environment.NewLine} {Environment.NewLine}{exception.Message}";
+                MessageBox.Show(message, "Printers",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtIp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            var key = (Keys)e.KeyChar;
+            if ((Keys)e.KeyChar != Keys.Delete && (Keys)e.KeyChar != Keys.Back)
+            {
+                Regex regex = new Regex("[^0-9]+");
+                e.Handled = regex.IsMatch(e.KeyChar.ToString());
+            }
         }
     }
 }
