@@ -62,7 +62,7 @@ namespace ZPL_Print_Testing.Handlers
             {
                 Console.WriteLine("Exception: {0}", e.ToString());
                 client.Close();
-                throw e;
+                throw;
             }
         }
     }

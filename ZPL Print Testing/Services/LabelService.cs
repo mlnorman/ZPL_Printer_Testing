@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using ZPL_Print_Testing.Models;
@@ -29,6 +30,8 @@ namespace ZPL_Print_Testing.Services
             }
             catch (Exception e)
             {
+                // todo: mln -- Add logging.
+                var message = e.Message;
                 throw;
             }
         }

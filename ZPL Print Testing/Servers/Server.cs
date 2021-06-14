@@ -66,12 +66,15 @@ namespace ZPL_Print_Testing.Servers
                 }
                 catch (SocketException e)
                 {
+                    // todo:mln -- Add logging
                     Console.WriteLine("SocketException: {0}", e);
                     server.Stop();
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    // todo:mln -- Add logging
+                    var message = ex.Message;
+                    throw;
                 }
             }
             

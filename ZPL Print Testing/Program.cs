@@ -9,6 +9,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using ZPL_Print_Testing.Models;
 using ZPL_Print_Testing.Repositories;
+using Message = System.Windows.Forms.Message;
 
 namespace ZPL_Print_Testing
 {
@@ -116,6 +117,8 @@ namespace ZPL_Print_Testing
             catch (Exception ex)
             {
                 //todo:mln -- Handle this, probably logging.
+                var message = ex.Message;
+
 
                 // delete the db file that was created.
                 if (!File.Exists(Environment.CurrentDirectory + "/zpl.db"))
