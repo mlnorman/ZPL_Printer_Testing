@@ -11,7 +11,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BinaryKits.Zpl.Viewer;
 using ZPL_Print_Testing.Forms;
 using ZPL_Print_Testing.Models;
 using ZPL_Print_Testing.Servers;
