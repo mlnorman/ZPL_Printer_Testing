@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BinaryKits.Zpl.Viewer;
 using ZPL_Print_Testing.Forms;
 using ZPL_Print_Testing.Models;
 using ZPL_Print_Testing.Servers;
@@ -167,7 +168,7 @@ namespace ZPL_Print_Testing
         private MainViewModel Sync()
         {
             var mainViewModel = new MainViewModel(txtIp.Text, int.Parse(txtPort.Text), int.Parse(txtHeight.Text),
-                int.Parse(txtWidth.Text), cboPrintDensity.SelectedItem.ToString(), txtPath.Text, chkSaveLabels.Checked);
+                int.Parse(txtWidth.Text), cboPrintDensity.SelectedItem.ToString(), chkUseBitonal.Checked, txtPath.Text, chkSaveLabels.Checked);
 
             return mainViewModel;
         }
@@ -180,6 +181,7 @@ namespace ZPL_Print_Testing
 
                 if (message != null)
                 {
+
                     imgLabel.Image = Image.FromStream(new MemoryStream(message.ImageBytes));
                 }
             }
@@ -251,6 +253,7 @@ namespace ZPL_Print_Testing
                         txtHeight.Text = format.Height.ToString();
                         txtWidth.Text = format.Width.ToString();
                         cboPrintDensity.SelectedItem = format.PrintDensity;
+                        chkUseBitonal.Checked = format.UseBitonal;
                     }
                 }
             }
@@ -268,6 +271,7 @@ namespace ZPL_Print_Testing
             chkSaveLabels.Enabled = false;
             btnPath.Enabled = false;
             toolStripMenuConfig.Enabled = false;
+            chkUseBitonal.Enabled = false;
         }
 
         private void SetFieldsEnabled()
@@ -282,6 +286,7 @@ namespace ZPL_Print_Testing
             chkSaveLabels.Enabled = true;
             btnPath.Enabled = true;
             toolStripMenuConfig.Enabled = true;
+            chkUseBitonal.Enabled = true;
         }
 
         private void OpenConfigForm()

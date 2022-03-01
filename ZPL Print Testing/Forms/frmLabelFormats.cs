@@ -51,7 +51,7 @@ namespace ZPL_Print_Testing.Forms
             txtHeight.Text = m_labelFormat.Height == 0 ? "" : m_labelFormat.Height.ToString();
             cboPrintDensity.SelectedItem = m_labelFormat.PrintDensity;
             chkDefault.Checked = m_labelFormat.IsDefault;
-
+            chkUseBitonal.Checked = m_labelFormat.UseBitonal;
         }
 
         private void Sync()
@@ -62,6 +62,7 @@ namespace ZPL_Print_Testing.Forms
             m_labelFormat.PrintDensity =
                 cboPrintDensity.SelectedItem == null ? "" : cboPrintDensity.SelectedItem.ToString();
             m_labelFormat.IsDefault = chkDefault.Checked;
+            m_labelFormat.UseBitonal = chkUseBitonal.Checked;
         }
 
         private bool FormValid()

@@ -22,6 +22,8 @@ namespace ZPL_Print_Testing.Models
 
         public string LabelPath { get; set; }
 
+        public bool UseBitonal { get; set; }
+
         public FormProperties()
         {
         }

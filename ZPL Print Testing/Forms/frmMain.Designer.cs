@@ -41,6 +41,8 @@ namespace ZPL_Print_Testing
             this.txtIp = new System.Windows.Forms.TextBox();
             this.imgLabel = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.chkUseBitonal = new System.Windows.Forms.CheckBox();
             this.cboSavedFormats = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtWidth = new System.Windows.Forms.MaskedTextBox();
@@ -163,6 +165,8 @@ namespace ZPL_Print_Testing
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.chkUseBitonal);
             this.groupBox2.Controls.Add(this.cboSavedFormats);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.txtWidth);
@@ -173,10 +177,28 @@ namespace ZPL_Print_Testing
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(12, 139);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(283, 156);
+            this.groupBox2.Size = new System.Drawing.Size(283, 189);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Label";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 117);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 15);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Use Bitonal";
+            // 
+            // chkUseBitonal
+            // 
+            this.chkUseBitonal.AutoSize = true;
+            this.chkUseBitonal.Location = new System.Drawing.Point(86, 118);
+            this.chkUseBitonal.Name = "chkUseBitonal";
+            this.chkUseBitonal.Size = new System.Drawing.Size(15, 14);
+            this.chkUseBitonal.TabIndex = 5;
+            this.chkUseBitonal.UseVisualStyleBackColor = true;
             // 
             // cboSavedFormats
             // 
@@ -226,15 +248,15 @@ namespace ZPL_Print_Testing
             "8dpmm",
             "12dpmm",
             "24dpmm"});
-            this.cboPrintDensity.Location = new System.Drawing.Point(86, 120);
+            this.cboPrintDensity.Location = new System.Drawing.Point(86, 138);
             this.cboPrintDensity.Name = "cboPrintDensity";
             this.cboPrintDensity.Size = new System.Drawing.Size(132, 23);
-            this.cboPrintDensity.TabIndex = 5;
+            this.cboPrintDensity.TabIndex = 6;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 123);
+            this.label5.Location = new System.Drawing.Point(6, 141);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 15);
             this.label5.TabIndex = 6;
@@ -265,7 +287,7 @@ namespace ZPL_Print_Testing
             this.groupBox3.Controls.Add(this.btnPath);
             this.groupBox3.Controls.Add(this.txtPath);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(12, 301);
+            this.groupBox3.Location = new System.Drawing.Point(12, 334);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(283, 84);
             this.groupBox3.TabIndex = 8;
@@ -287,7 +309,7 @@ namespace ZPL_Print_Testing
             this.chkSaveLabels.Location = new System.Drawing.Point(87, 20);
             this.chkSaveLabels.Name = "chkSaveLabels";
             this.chkSaveLabels.Size = new System.Drawing.Size(15, 14);
-            this.chkSaveLabels.TabIndex = 6;
+            this.chkSaveLabels.TabIndex = 7;
             this.chkSaveLabels.UseVisualStyleBackColor = true;
             // 
             // btnPath
@@ -295,7 +317,7 @@ namespace ZPL_Print_Testing
             this.btnPath.Location = new System.Drawing.Point(247, 45);
             this.btnPath.Name = "btnPath";
             this.btnPath.Size = new System.Drawing.Size(26, 23);
-            this.btnPath.TabIndex = 8;
+            this.btnPath.TabIndex = 9;
             this.btnPath.UseVisualStyleBackColor = true;
             this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
             // 
@@ -304,7 +326,7 @@ namespace ZPL_Print_Testing
             this.txtPath.Location = new System.Drawing.Point(86, 45);
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(155, 23);
-            this.txtPath.TabIndex = 7;
+            this.txtPath.TabIndex = 8;
             // 
             // label6
             // 
@@ -317,10 +339,10 @@ namespace ZPL_Print_Testing
             // 
             // btnStartStop
             // 
-            this.btnStartStop.Location = new System.Drawing.Point(12, 400);
+            this.btnStartStop.Location = new System.Drawing.Point(12, 433);
             this.btnStartStop.Name = "btnStartStop";
             this.btnStartStop.Size = new System.Drawing.Size(283, 30);
-            this.btnStartStop.TabIndex = 9;
+            this.btnStartStop.TabIndex = 10;
             this.btnStartStop.Text = "Start";
             this.btnStartStop.UseVisualStyleBackColor = true;
             this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
@@ -334,7 +356,7 @@ namespace ZPL_Print_Testing
             // 
             this.picRunning.BackColor = System.Drawing.Color.Transparent;
             this.picRunning.Image = global::ZPL_Print_Testing.Properties.Resources.run;
-            this.picRunning.Location = new System.Drawing.Point(115, 436);
+            this.picRunning.Location = new System.Drawing.Point(115, 469);
             this.picRunning.Name = "picRunning";
             this.picRunning.Size = new System.Drawing.Size(69, 64);
             this.picRunning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -404,6 +426,8 @@ namespace ZPL_Print_Testing
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox picRunning;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuConfig;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox chkUseBitonal;
     }
 }
 

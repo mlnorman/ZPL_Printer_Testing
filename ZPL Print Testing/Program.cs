@@ -83,6 +83,7 @@ namespace ZPL_Print_Testing
                               "'Height' INTEGER," +
                               "'Width' INTEGER," +
                               "'PrintDensity' TEXT," +
+                              "'UseBitonal' INTEGER," +
                               "'IsDefault' INTEGER," +
                               "PRIMARY KEY('id' AUTOINCREMENT)" +
                               ");" +
@@ -90,8 +91,8 @@ namespace ZPL_Print_Testing
                               "INSERT INTO AppConfig(IpAddress, Port, SaveLabels, SaveLabelPath) " + // this will insert row with id = 1
                               "VALUES ('', 0, 0, '');" +
                               "" +
-                              "INSERT INTO LabelFormats(AppConfigId, Name, Height, Width, PrintDensity, IsDefault) " +
-                              "VALUES (1, 'Test', 6, 4, '8dpmm', 0);" +
+                              "INSERT INTO LabelFormats(AppConfigId, Name, Height, Width, PrintDensity, UseBitonal, IsDefault) " +
+                              "VALUES (1, 'Test', 6, 4, '8dpmm', 1, 0);" +
                               "";
                               
                     using (var cmd = new SqliteCommand(sql, conn))

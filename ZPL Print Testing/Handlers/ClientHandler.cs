@@ -37,6 +37,7 @@ namespace ZPL_Print_Testing.Handlers
             try
             {
                 string line = "";
+                Thread.Sleep(1000);
                 while (!string.IsNullOrWhiteSpace(line = reader.ReadToEnd()))
                 {
                     if (token.IsCancellationRequested)
@@ -45,14 +46,17 @@ namespace ZPL_Print_Testing.Handlers
                         break;
                     }
 
+                    
+
                     //writer.WriteLine("You typed: " + line);
                     ImageHttpClient httpClient = new ImageHttpClient(viewModel);
                     var image = httpClient.Send(line);
 
+
                     if (image != null)
                     {
-                        var m = new Message("Image received", image);
-                        messages.Enqueue(m);
+                        var message = new Message("Image received", image);
+                        messages.Enqueue(message);
                     }
 
                     line = null;

@@ -78,7 +78,7 @@ namespace ZPL_Print_Testing.Repositories
                 if (labelFormat.Id > 0)
                 {
                     var sql =
-                        "UPDATE LabelFormats SET Name = @Name, Height = @Height, Width = @Width, PrintDensity = @PrintDensity, IsDefault = @IsDefault WHERE Id = @Id ";
+                        "UPDATE LabelFormats SET Name = @Name, Height = @Height, Width = @Width, PrintDensity = @PrintDensity, UseBitonal = @UseBitonal, IsDefault = @IsDefault WHERE Id = @Id ";
 
                     var result = conn.Execute(sql, new
                     {
@@ -86,6 +86,7 @@ namespace ZPL_Print_Testing.Repositories
                         labelFormat.Height,
                         labelFormat.Width,
                         labelFormat.PrintDensity,
+                        labelFormat.UseBitonal,
                         labelFormat.IsDefault,
                         labelFormat.Id
                     });
@@ -93,8 +94,8 @@ namespace ZPL_Print_Testing.Repositories
                 else
                 {
                     var sql =
-                        "insert into LabelFormats (AppConfigId, Name, Height, Width, PrintDensity, IsDefault) VALUES" +
-                        "(@AppConfigId, @Name, @Height, @Width, @PrintDensity, @IsDefault)";
+                        "insert into LabelFormats (AppConfigId, Name, Height, Width, PrintDensity, UseBitonal, IsDefault) VALUES" +
+                        "(@AppConfigId, @Name, @Height, @Width, @PrintDensity, @UseBitonal, @IsDefault)";
                     
                     var result = conn.Execute(sql, new
                     {
@@ -103,6 +104,7 @@ namespace ZPL_Print_Testing.Repositories
                         labelFormat.Height,
                         labelFormat.Width,
                         labelFormat.PrintDensity,
+                        labelFormat.UseBitonal,
                         labelFormat.IsDefault
                     });
                 }

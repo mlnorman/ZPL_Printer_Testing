@@ -25,14 +25,20 @@ namespace ZPL_Print_Testing.WebClients
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = zpl.Length;
-
+            if (viewModel.UseBitonal)
+            {
+                request.Headers.Add("X-Quality", "Bitonal");
+            }
+            
             var requestStream = request.GetRequestStream();
             requestStream.Write(zpl, 0, zpl.Length);
             requestStream.Close();
 
+            HttpWebResponse response = null;
+
             try
             {
-                var response = (HttpWebResponse) request.GetResponse();
+                response = (HttpWebResponse) request.GetResponse();
                 var responseStream = response.GetResponseStream();
                 MemoryStream ms = new MemoryStream();
                 responseStream.CopyTo(ms);
@@ -50,6 +56,14 @@ namespace ZPL_Print_Testing.WebClients
             }
             catch (WebException e)
             {
+                if (response != null)
+                {
+                    if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        Console.WriteLine("Returned image is larger than 10mb.  Bad Request.  Consider using bitonal");
+                    }
+                }
+
                 Console.WriteLine("Error: {0}", e.Status);
                 return null;
             }

@@ -6,10 +6,16 @@
 
         public byte[] ImageBytes { get; set; }
         
+        public Message()
+        {
+
+        }
+
         public Message(string message, byte[] imageBytes)
         {
             MessageDescription = message;
             ImageBytes = imageBytes;
+            
         }
     }
 }

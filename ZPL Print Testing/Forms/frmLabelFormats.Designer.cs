@@ -41,6 +41,8 @@ namespace ZPL_Print_Testing.Forms
             this.chkDefault = new System.Windows.Forms.CheckBox();
             this.btnSaveExit = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.chkUseBitonal = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -55,7 +57,7 @@ namespace ZPL_Print_Testing.Forms
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 142);
+            this.label2.Location = new System.Drawing.Point(12, 161);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 15);
             this.label2.TabIndex = 1;
@@ -64,7 +66,7 @@ namespace ZPL_Print_Testing.Forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 115);
+            this.label3.Location = new System.Drawing.Point(12, 134);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 15);
             this.label3.TabIndex = 2;
@@ -123,18 +125,18 @@ namespace ZPL_Print_Testing.Forms
             "8dpmm",
             "12dpmm",
             "24dpmm"});
-            this.cboPrintDensity.Location = new System.Drawing.Point(92, 112);
+            this.cboPrintDensity.Location = new System.Drawing.Point(92, 131);
             this.cboPrintDensity.Name = "cboPrintDensity";
             this.cboPrintDensity.Size = new System.Drawing.Size(132, 23);
-            this.cboPrintDensity.TabIndex = 3;
+            this.cboPrintDensity.TabIndex = 4;
             // 
             // chkDefault
             // 
             this.chkDefault.AutoSize = true;
-            this.chkDefault.Location = new System.Drawing.Point(92, 141);
+            this.chkDefault.Location = new System.Drawing.Point(92, 162);
             this.chkDefault.Name = "chkDefault";
             this.chkDefault.Size = new System.Drawing.Size(15, 14);
-            this.chkDefault.TabIndex = 4;
+            this.chkDefault.TabIndex = 5;
             this.chkDefault.UseVisualStyleBackColor = true;
             // 
             // btnSaveExit
@@ -142,7 +144,7 @@ namespace ZPL_Print_Testing.Forms
             this.btnSaveExit.Location = new System.Drawing.Point(146, 205);
             this.btnSaveExit.Name = "btnSaveExit";
             this.btnSaveExit.Size = new System.Drawing.Size(70, 24);
-            this.btnSaveExit.TabIndex = 5;
+            this.btnSaveExit.TabIndex = 6;
             this.btnSaveExit.Text = "Save/Exit";
             this.btnSaveExit.UseVisualStyleBackColor = true;
             this.btnSaveExit.Click += new System.EventHandler(this.btnSaveExit_Click);
@@ -152,10 +154,28 @@ namespace ZPL_Print_Testing.Forms
             this.btnExit.Location = new System.Drawing.Point(222, 205);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(70, 24);
-            this.btnExit.TabIndex = 6;
+            this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(12, 110);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 15);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Use Bitonal";
+            // 
+            // chkUseBitonal
+            // 
+            this.chkUseBitonal.AutoSize = true;
+            this.chkUseBitonal.Location = new System.Drawing.Point(92, 111);
+            this.chkUseBitonal.Name = "chkUseBitonal";
+            this.chkUseBitonal.Size = new System.Drawing.Size(15, 14);
+            this.chkUseBitonal.TabIndex = 3;
+            this.chkUseBitonal.UseVisualStyleBackColor = true;
             // 
             // frmLabelFormats
             // 
@@ -163,6 +183,8 @@ namespace ZPL_Print_Testing.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(305, 240);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.chkUseBitonal);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSaveExit);
             this.Controls.Add(this.chkDefault);
@@ -202,5 +224,7 @@ namespace ZPL_Print_Testing.Forms
         private System.Windows.Forms.CheckBox chkDefault;
         private System.Windows.Forms.Button btnSaveExit;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox chkUseBitonal;
     }
 }

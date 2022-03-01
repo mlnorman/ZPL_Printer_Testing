@@ -22,7 +22,9 @@ namespace ZPL_Print_Testing.ViewModels
 
         public bool SaveLabels { get; set; }
 
-        public MainViewModel(string ipAddress, int port, int height, int width, string printDensity, string path, bool saveLabels)
+        public bool UseBitonal { get; set; }
+
+        public MainViewModel(string ipAddress, int port, int height, int width, string printDensity, bool useBitonal, string path, bool saveLabels)
         {
             IpAddress = ipAddress;
             Port = port;
@@ -31,6 +33,7 @@ namespace ZPL_Print_Testing.ViewModels
             PrintDensity = printDensity;
             Path = path;
             SaveLabels = saveLabels;
+            UseBitonal = useBitonal;
         }
     }
 }

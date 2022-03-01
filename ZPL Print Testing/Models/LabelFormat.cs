@@ -26,6 +26,8 @@ namespace ZPL_Print_Testing.Models
 
         public string PrintDensity { get; set; }
 
+        public bool UseBitonal { get; set; }
+
         public bool IsDefault { get; set; }
 
     }
